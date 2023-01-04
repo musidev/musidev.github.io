@@ -279,7 +279,7 @@ const htmlInsertions = {
         `<div class="flex flex_direction_column flex_row_gap_10" id="Moneydrain_click" style="margin:25px 50px">
             <p class="main_text_middle_row custom_font custom_font_large color_font_light">LIMITED TIME ONLY! <img src="dicsword/peepohype.gif"> One in a lifetime opportunity to hire me either as a new - preferably long term - addition to your team or as a freelance front-end dev for your custom commission.</p>
             <img class="hire_me_img flex_align_self_center" src="dicsword/d58.png" style="margin:20px">
-            <p class="main_text_middle_row custom_font custom_font_large color_font_light">If you're interested, feel free to contact me via <a href="mailto:an.musijenko@gmail.com" target="_blank">an.musijenko@gmail.com</a> or <a href="https://www.linkedin.com/in/aneta-marie-musijenko-10b087226/" target="_blank">my LinkedIn profile</a> and we can set up a meeting. <img class="img_preset_small" src="dicsword/catdance.gif"></p>
+            <p class="main_text_middle_row custom_font custom_font_large color_font_light">If you're interested, feel free to contact me via <a href="https://www.linkedin.com/in/aneta-marie-musijenko-10b087226/" target="_blank">my LinkedIn profile</a> and we can set up a meeting. <img class="img_preset_small" src="dicsword/catdance.gif"></p>
         </div>`,
 
     messageBuilder: function(messageFunction) {
