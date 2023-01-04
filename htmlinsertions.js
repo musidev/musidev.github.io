@@ -188,17 +188,17 @@ const htmlInsertions = {
     
     addNewServerButton:  
         `<div class="flex flex_direction_column" style="margin:25px 50px">
-            <p class="main_text_middle_row custom_font custom_font_large color_font_light">TBA - ONLINE</p>
+            <p class="main_text_middle_row custom_font custom_font_large color_font_light">This button does absolutely nothing. <img class="img_preset_small" src="dicsword/shrek.png"></p>
         </div>`,
 
     exploreServersButton:  
         `<div class="flex flex_direction_column" style="margin:25px 50px">
-            <p class="main_text_middle_row custom_font custom_font_large color_font_light">TBA - ONLINE</p>
+            <p class="main_text_middle_row custom_font custom_font_large color_font_light">This button also does absolutely nothing. <img class="img_preset_small" src="dicsword/kek.png"></p>
         </div>`,
 
     downloadAppsButton:  
         `<div class="flex flex_direction_column" style="margin:25px 50px">
-            <p class="main_text_middle_row custom_font custom_font_large color_font_light">TBA - ONLINE</p>
+            <p class="main_text_middle_row custom_font custom_font_large color_font_light">You guessed it, this button does absolutely nothing. <img class="img_preset_small" src="dicsword/kek2.png"></p>
         </div>`,
 
 
