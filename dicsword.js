@@ -158,16 +158,25 @@ function changeActiveLeftPaneButton(newDOMElement) {
     activeSelectedLeftPaneButton = newDOMElement;
 }
 
-function addClickListeners({ whereToAttachListenerDOM }, buttonEvents, eventForEachButton = changeActiveButton) 
+const clickEvents = {
+    beforeClick: (el) => {},
+    afterClick: (el) => {}
+}
+
+function addClickListeners({ whereToAttachListenerDOM }, buttonEvents, eventForEachButtonAfterClick = clickEvents) 
 {
+    let {beforeClick, afterClick} = eventForEachButtonAfterClick;
+    if(!beforeClick) beforeClick = (el) => {}
+    if(!afterClick) afterClick= (el) => {}
+
     for(let i = 0; i < whereToAttachListenerDOM.length; i++)
     {
         const pieceOfDOM = whereToAttachListenerDOM[i];
         const name = pieceOfDOM.getAttribute("name");
         pieceOfDOM.addEventListener("click", function(ev){ 
-            eventForEachButton(pieceOfDOM);
-            
+            beforeClick(pieceOfDOM);
             buttonEvents[name](pieceOfDOM); 
+            afterClick(pieceOfDOM);
         });
     }
 }
@@ -204,6 +213,7 @@ function listedFriendsClickAndSearchBarEvent()
 
 function addReactiveButtonFunctions() {
     const mainBody = document.querySelector("#main_right_column_body");
+    const friendsMoneydrainButtonMiddleRow = document.querySelectorAll(".friends_moneydrain_button_middle_row");
     
     addClickListeners(
         { whereToAttachListenerDOM: document.querySelectorAll(".navbar_button_upper_row")},
@@ -242,11 +252,14 @@ function addReactiveButtonFunctions() {
     addClickListeners(
         { whereToAttachListenerDOM: document.querySelectorAll(".servers_left_column")},
         {
-            "Home" : function() {
+            "Home" : function(el) {
+                if(el === activeServerDOM)
+                {
+                    return;
+                }
                 const onlineHTMl = htmlInsertions.homeButton;
                 mainBody.innerHTML = onlineHTMl;
-                // document.querySelector('[name="All"]').dispatchEvent(new Event('click'));
-                document.querySelector('[name="Online"]').dispatchEvent(new Event('click'));
+                document.querySelector('[name="Friends"]').dispatchEvent(new Event('click'));
             },
             "FSE" : function() {
                 const onlineHTMl = htmlInsertions.fseButton;
@@ -273,15 +286,24 @@ function addReactiveButtonFunctions() {
                 mainBody.innerHTML = onlineHTMl;
             }
         },
-        (el) => {
-            activeServerDOM?.classList?.remove("active");
-            activeServerDOM = el;
-            activeServerDOM.classList.add("active")
+        {   
+            beforeClick: (el) => {
+                friendsMoneydrainButtonMiddleRow.forEach(el => el.classList.remove('active'));
+            },
+            afterClick: (el) => {
+                if(el === activeServerDOM) 
+                {
+                    return;
+                }
+                activeServerDOM?.classList?.remove("active");
+                activeServerDOM = el;
+                activeServerDOM.classList.add("active")
+            }
         }
     )
 
     addClickListeners(
-        { whereToAttachListenerDOM: document.querySelectorAll(".friends_moneydrain_button_middle_row")},
+        { whereToAttachListenerDOM: friendsMoneydrainButtonMiddleRow},
         {
             "Friends" : function() {
                 const onlineHTMl = htmlInsertions.Friends;
@@ -306,7 +328,9 @@ function addReactiveButtonFunctions() {
                 friendsNavbar.classList.add('hidden')
             }
         },
-        changeActiveLeftPaneButton
+        {
+            afterClick: changeActiveLeftPaneButton
+        }
     )
 
     addClickListeners(
